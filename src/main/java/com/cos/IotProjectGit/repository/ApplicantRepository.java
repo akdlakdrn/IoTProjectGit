@@ -1,5 +1,9 @@
 package com.cos.IotProjectGit.repository;
 
-public interface ApplicantRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.cos.IotProjectGit.model.Applicant;
+
+public interface ApplicantRepository extends JpaRepository<Applicant, Integer>{
+	public Applicant findByUsername(String username);
 }
