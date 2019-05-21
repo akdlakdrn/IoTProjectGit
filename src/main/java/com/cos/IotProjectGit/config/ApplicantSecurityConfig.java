@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.cos.IotProjectGit.service.ApplicantCustomService;
 
 @Configuration
 @EnableWebSecurity
@@ -35,14 +34,14 @@ public class ApplicantSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.cors().disable();
 		http.authorizeRequests()
 //				.antMatchers("/applicant/**", "/follow/**", "/images/**")
-				.antMatchers("/applicant/**").permitAll();//지정할때쓰는거
+				.antMatchers("/applicant/**").permitAll()//지정할때쓰는거
 //				.authenticated()
 //				.anyRequest().permitAll();
-//				.and()
-//				.formLogin()
-//				.loginPage("/applicant/login")
-//				.loginProcessingUrl("/applicant/loginproc");
-			//	.defaultSuccessUrl("/applicant/join");
+				.and()
+				.formLogin()
+				.loginPage("/applicant/login")
+				.loginProcessingUrl("/applicant/loginproc")
+				.defaultSuccessUrl("/applicant/login");
 	}
 	
 

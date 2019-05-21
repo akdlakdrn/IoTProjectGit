@@ -1,5 +1,7 @@
 package com.cos.IotProjectGit.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,9 +26,9 @@ public class ApplicantCustomService implements UserDetailsService{
 //		return applicantRepository.findAll();
 //	}
 //	
-//	public Optional<Applicant> findById(int num){
-//		return applicantRepository.findById(num);
-//	}
+	public Optional<Applicant> findById(int num){
+		return applicantRepository.findById(num);
+	}
 //	
 //	public int delete(int num) {
 ////		boardRepository.delete(entity);
@@ -39,9 +41,9 @@ public class ApplicantCustomService implements UserDetailsService{
 //		}
 //	}
 //	
-//	public Optional<Applicant> applicantDetail(int num) {
-//		return applicantRepository.findById(num);
-//	}
+	public Optional<Applicant> applicantDetail(int num) {
+		return applicantRepository.findById(num);
+	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -57,6 +59,7 @@ public class ApplicantCustomService implements UserDetailsService{
 		}
 		return userDetails;
 	}
+
 
 
 }
