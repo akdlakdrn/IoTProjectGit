@@ -29,7 +29,7 @@ public class ApplicantController {
 	
 	@GetMapping("/")
 	public String home() {
-		return "applicant/applicant";
+		return "index";
 	}
 	
 	@GetMapping("/applicant/login")

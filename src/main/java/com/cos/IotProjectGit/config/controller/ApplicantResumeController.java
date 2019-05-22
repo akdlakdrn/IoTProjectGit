@@ -30,17 +30,24 @@ public class ApplicantResumeController {
 	public String resume() {
 		return "resume";
 	}
+	
+	@GetMapping("/resume/Detail")
+	public String resumeDetail() {
+		return "/resume/Detail";
+	}
 
 	@PostMapping("/resume/create")
 	public @ResponseBody ApplicantResume resumeCreate(@AuthenticationPrincipal ApplicantCustomerDetail applicantDetail,
-			@RequestParam("file") MultipartFile file) throws IOException {
+			@RequestParam("file") MultipartFile file, String applicantResumetitle, String education , String wishaddress, String job,String age,String salary,String experience) throws IOException {
 		Path filePath = Paths.get(ApplicantUtil.getResouecePath() + file.getOriginalFilename());
 		System.out.println(file.getBytes());
 		Files.write(filePath,file.getBytes());
 		System.out.println(applicantDetail.getApplicant());
 		Applicant applicant = applicantDetail.getApplicant();
 		
-		ApplicantResume applicantresume = ApplicantResume.builder().applicant(applicant).mimeType(file.getContentType())
+		ApplicantResume applicantresume = ApplicantResume.builder().applicantResumetitle(applicantResumetitle).
+				applicant(applicant).job(job).age(age).salary(salary).
+				experience(experience).wishaddress(wishaddress).mimeType(file.getContentType())
 				.fileName(file.getOriginalFilename()).filePath("/image/"+file.getOriginalFilename()).build();
 		
 		applicantResumeRepository.save(applicantresume);
