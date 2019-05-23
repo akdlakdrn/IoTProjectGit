@@ -1,6 +1,8 @@
 package com.cos.IotProjectGit.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -28,21 +31,19 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ApplicantResume {
 	
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int num;
+	private int id;
 	
 	//타이틀 선언
 	@Column(nullable = false, length = 100)//null값 금지
-	private String applicantResumetitle;
+	private String title;
 	//파일 관리를 위한 객체 선언
 	private String mimeType;
 	private String fileName;
 	private String filePath;
 	//희망주소
-	private String wishaddress;
+	private String wishAddress;
 	//경력
 	private String experience;
 	//직종
@@ -50,13 +51,21 @@ public class ApplicantResume {
 	//나이
 	private String age;
 	//희망연봉
-	private String salary;
+	private int salary;
+	
+	//학력 - ENUM
+	private String education; //1(고졸),2(전문대졸),3(대졸),4(석사),5(박사)
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
 	@JsonIgnoreProperties({"username","password","createDate","updateDate"})
-	private Applicant applicant;
+	private User user;
 	
+	@Transient
+	@Builder.Default private List<ApplicantHistory> applicantHistory = new ArrayList<>(); //콤마로 구분해서 집어 넣음.
+	
+	@Transient
+	@Builder.Default private List<Skill> skill = new ArrayList<>();
 	
 	@CreationTimestamp
 	private LocalDate createDate;

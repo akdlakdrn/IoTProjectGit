@@ -5,16 +5,16 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.cos.IotProjectGit.model.Applicant;
+import com.cos.IotProjectGit.model.User;
 
 import lombok.Data;
 
 @Data
-public class ApplicantCustomerDetail implements UserDetails{
+public class UserCustomerDetail implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Applicant applicant;
+	private User applicant;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
